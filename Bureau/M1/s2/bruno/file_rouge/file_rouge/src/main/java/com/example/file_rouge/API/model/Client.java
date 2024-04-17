@@ -1,11 +1,21 @@
 package com.example.file_rouge.API.model;
 
 import jakarta.persistence.*;
+import jakarta.ws.rs.GET;
+import jakarta.ws.rs.Path;
+import jakarta.ws.rs.Produces;
+import jakarta.ws.rs.core.MediaType;
 import lombok.*;
 
 import java.util.List;
 import java.util.logging.Logger;
 
+import org.glassfish.grizzly.http.server.HttpServer;
+import org.glassfish.jersey.grizzly2.httpserver.GrizzlyHttpServerFactory;
+import org.glassfish.jersey.server.ResourceConfig;
+
+import java.io.IOException;
+import java.net.URI;
 
 @Entity
 @RequiredArgsConstructor(staticName = "of")
@@ -13,6 +23,7 @@ import java.util.logging.Logger;
 @Setter
 @ToString
 @Getter
+@Path("Ressource/Client")
 public class Client {
     @Id
     @GeneratedValue
@@ -35,4 +46,9 @@ public class Client {
     @Version
     Long version;
 
+    @GET
+    @Produces(MediaType.TEXT_PLAIN)
+    public String getIt() {
+        return "Got it!";
+    }
 }
