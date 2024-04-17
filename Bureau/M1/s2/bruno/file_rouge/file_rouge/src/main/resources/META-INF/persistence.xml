@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<persistence xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="3.0"
+             xmlns="https://jakarta.ee/xml/ns/persistence"
+             xsi:schemaLocation="https://jakarta.ee/xml/ns/persistence https://jakarta.ee/xml/ns/persistence/persistence_3_0.xsd">
+    <persistence-unit name="hellojpa-pu"
+                      transaction-type="RESOURCE_LOCAL">
+        <description>Hello JPA Persistance Unit</description>
+        <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+        <exclude-unlisted-classes>false</exclude-unlisted-classes>
+
+        <properties>
+            <!-- database connection for Java SE  container_red_psql est le nom du container-->
+            <property name="jakarta.persistence.target-database" value="PostgreSQL" />
+            <property name="jakarta.persistence.jdbc.url" value="jdbc:postgresql://localhost:5555/mydatabase" />
+            <property name="jakarta.persistence.jdbc.user" value="myuser" />
+            <property name="jakarta.persistence.jdbc.password" value="mypassword" />
+
+            <!-- Database creation: none, create, drop-and-create, drop -->
+            <property name="jakarta.persistence.schema-generation.database.action" value="drop-and-create" />
+
+            <!-- Sources and order for DB schema generation: script and metadata -->
+            <property name="jakarta.persistence.schema-generation.create-source" value="script-then-metadata" />
+            <!-- Sources and order for DB schema destruction: script and metadata -->
+            <property name="jakarta.persistence.schema-generation.drop-source" value="script-then-metadata" />
+
+            <property name="jakarta.persistence.schema-generation.create-database-schemas" value="true" />
+
+            <!-- The scripts provided in META-INF for initialization -->
+            <property name="jakarta.persistence.schema-generation.create-script-source" value="sql/provided-create.ddl" />
+            <property name="jakarta.persistence.schema-generation.drop-script-source" value="sql/provided-drop.ddl" />
+            <property name="jakarta.persistence.sql-load-script-source" value="sql/provided-data.sql" />
+
+            <property name="jakarta.persistence.schema-generation.scripts.create-target" value="generated-create.ddl" />
+            <property name="jakarta.persistence.schema-generation.scripts.drop-target" value="generated-drop.ddl" />
+
+            <!-- Connexion Pool Production management -->
+            <property name="hibernate.c3p0.min_size" value="5" />
+            <property name="hibernate.c3p0.max_size" value="30" />
+            <property name="hibernate.c3p0.acquire_increment" value="5" />
+            <property name="hibernate.c3p0.timeout" value="1800" />
+
+        </properties>
+    </persistence-unit>
+</persistence>

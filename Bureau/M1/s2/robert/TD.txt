@@ -1,0 +1,81 @@
+1.5 )
+
+    1/ 534²⁹ mod 989 = 132
+
+    2/ 989 = 23*43
+
+    phi(n) = 22*42 = 924
+
+    d = 701 = 29^-1 mod phi(n)
+        701 = 29^-1 mod 924
+
+    3/ 132⁷⁰¹ mod 989 = 534
+
+1.6)
+
+Exercice 1.6 Signature RSA
+
+1. Validité des signatures
+
+Pour qu'une signature soit valide, elle doit respecter l'équation suivante :
+
+    s^k ≡ m (mod N)
+
+a) m = 347, s = 719
+
+Calculons :
+
+    719^23 ≡ 347 (mod 989)
+
+Ce n'est pas vrai, donc la signature n'est pas valide.
+
+b) m = 347, s = 761
+
+Calculons :
+
+    761^23 ≡ 347 (mod 989)
+
+c vrai signature valide
+
+c) m = 219, s = 128
+
+Calculons :
+
+    128^23 ≡ 219 (mod 989)
+
+C'est pas vrai, donc la signature est pas valide.
+
+d) m = 239, s = 745
+
+Calculons :
+
+    745^23 ≡ 239 (mod 989)
+
+C'est vrai, donc la signature est valide.
+
+2. Calcul et vérification de la signature pour m = 123
+
+a) Calcul de la signature
+
+    Calculons le hachage du message m = 123. On peut utiliser une fonction de hachage
+     comme SHA-1 ou SHA-256. Supposons que le hachage est H = 456.
+    Chiffrons le hachage avec la clé privée de Bob :
+
+s = H^k' ≡ 456^7 (mod 989)
+s = 405
+
+b) Vérification de la signature
+
+Calculons :
+
+405^23 ≡ 123 (mod 989)
+
+C'est vrai, donc la signature est valide.
+
+Conclusion
+
+Les signatures valides sont :
+
+    (m = 219, s = 128)
+    (m = 239, s = 745)
+    (m = 123, s = 405)

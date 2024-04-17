@@ -1,0 +1,94 @@
+CRYPTOGRAPHIE ASYMETRIQUE
+
+    -principe
+
+    on a une paire de clef:
+        clef public / clef secret(privé)
+
+    bob -> alice
+
+    bob prend la clef public de alice et crypte son msg avec
+    alice peut le decripter avec sa lef public et sa clef privé
+
+
+
+    -RSA
+    basé sur le probleme de la factorisation
+
+    alice genere un paire de clef :
+
+        elle choisi deux entier p q premier aléatooirement
+
+        elle clacule de produit N
+
+        elle calcule  phi(N)
+
+        elle choisi un entier e tel que 1<e<phi(N) et e premier avec N => pgcd(e,phi(N)) = 1
+
+        elle calcule d tel que d*e = 1 mod(phi(N))
+
+            e est publié c'est la clef publique
+
+            d est concervé c'est la clef secréte
+
+    bob chiffre le msg :
+
+        c = M^e mod N
+
+    alice dechiffre le msg :
+
+        c^d mod N = (M^e)^d mod N
+                = M^e-d mod N
+                = M^(e-d mod phi(N)) mod N
+                = M¹ mod phi(N) mod N
+                = M
+
+    square and multiply :
+
+
+
+    demonstation par preuve de Fermat dans le cours moodle :
+
+
+
+
+
+
+    -Logarithme discret
+
+        Protocole d’échange de clé de Diffie-Hellmann :
+            voir cour
+
+            attaque par man in the middle 
+
+
+    -elliptic curve cryptography
+
+SIGNATURE
+
+
+CONCLUSION
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
