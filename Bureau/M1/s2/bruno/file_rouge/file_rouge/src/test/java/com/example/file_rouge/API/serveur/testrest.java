@@ -1,6 +1,7 @@
 package com.example.file_rouge.API.serveur;
 
 import com.example.file_rouge.API.DAO.ClientDAO;
+import com.example.file_rouge.API.model.Deliveryaddress;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -60,7 +61,6 @@ public class testrest {
         }
     }
 
-
     @BeforeAll
     static void setUp() {
         emf = Persistence.createEntityManagerFactory("hellojpa-pu");
@@ -87,6 +87,41 @@ public class testrest {
         assertTrue(executeCurl("PUT", "http://localhost:7777/clients/1", updateClient));
     }
 
+    private String execcheckAdresse(String url) throws IOException {
+        ProcessBuilder processBuilder = new ProcessBuilder();
+        processBuilder.command("bash", "-c", "curl --output - "+ url);
+        System.out.println(processBuilder.command("bash", "-c", "curl --output - "+ url));
+        processBuilder.redirectErrorStream(true);
+        Process process = processBuilder.start();
+
+        StringBuilder output = new StringBuilder();
+        try (BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                output.append(line).append("\n");
+            }
+
+        }
+
+        process.destroy();
+        return output.toString().trim();
+    }
+    private Deliveryaddress deliveryaddress = new Deliveryaddress();
+
+
+
+    @Test
+    public void checkAdresse() throws IOException {
+        deliveryaddress.setNumero(185);
+        deliveryaddress.setLibelleVoie("Place de la Liberte");
+        deliveryaddress.setCodePostal(83300);
+        deliveryaddress.setNomLocalité("Toulon");
+
+
+        String res = execcheckAdresse("https://api-adresse.data.gouv.fr/search/?q="+deliveryaddress.getNumero()+"+"+deliveryaddress.getLibelleVoie()+"+"+deliveryaddress.getCodePostal()+"+"+deliveryaddress.getNomLocalité());
+        System.out.println(res);
+    }
+
     private boolean statusOK(String retour) throws IOException {
         ObjectMapper objectMapper = new ObjectMapper();
         // Lire la chaîne JSON en tant qu'arbre JsonNode
@@ -105,7 +140,7 @@ public class testrest {
 
     private String executeCurl(String method, String url) throws IOException {
         ProcessBuilder processBuilder = new ProcessBuilder();
-        processBuilder.command("bash", "-c", "curl -X " + method + " " + url);
+        processBuilder.command("bash", "-c", "curl -X --output -" + method + " " + url);
         processBuilder.redirectErrorStream(true);
         Process process = processBuilder.start();
 

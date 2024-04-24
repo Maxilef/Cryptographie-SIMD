@@ -53,7 +53,7 @@ public class ClientResource {
             try {
                 ObjectMapper mapper = new ObjectMapper();
 
-                System.out.println(client);
+                //System.out.println(client);
                 return mapper.writeValueAsString(client);
             } catch (Exception e) {
                 e.printStackTrace();

@@ -51,6 +51,12 @@ public class Commande {
     @OneToMany(mappedBy = "commande")
     private List<LigneDeCommande> lignesDeCommande;
 
+    @ManyToOne
+    //@JoinColumn(name = "deliveryadresse_id")
+    private Deliveryaddress deliveryaddress;
+
+
+
     private static final Logger LOGGER = Logger.getLogger(Commande.class.getName());
 
     @Version
