@@ -32,21 +32,21 @@ class ClientDAOTest {
 
     @Test
     void create() {
-        Client client = Client.of("test@example.com", "Test", "User");
+        Client client = Client.of("testmail", "Test", "User");
 
         assertDoesNotThrow(() -> {
             clientDAO.create(client);
         });
 
         assertNotNull(client.getId());
-        assertEquals("test@example.com", client.getEmail());
+        assertEquals("testmail", client.getEmail());
         assertEquals("Test", client.getNom());
         assertEquals("User", client.getPrenom());
     }
 
     @Test
     void update() {
-        Client client = Client.of("update@example.com", "Update", "User");
+        Client client = Client.of("updatemail", "Update", "User");
         clientDAO.create(client);
 
         client.setPrenom("Updated");
@@ -58,7 +58,7 @@ class ClientDAOTest {
 
     @Test
     void delete() {
-        Client client = Client.of("delete@example.com", "Delete", "User");
+        Client client = Client.of("deletemail", "Delete", "User");
         clientDAO.create(client);
 
         clientDAO.delete(client);
@@ -69,7 +69,7 @@ class ClientDAOTest {
 
     @Test
     void findById() {
-        Client client = Client.of("findbyid@example.com", "FindById", "User");
+        Client client = Client.of("findbyidmail", "FindById", "User");
         clientDAO.create(client);
 
         Client retrievedClient = clientDAO.findById(client.getId());
@@ -82,10 +82,10 @@ class ClientDAOTest {
         List<Client> allClients = clientDAO.findAll();
         int initialSize = allClients.size();
 
-        Client client1 = Client.of("client1@example.com", "Client1", "User");
+        Client client1 = Client.of("client1mail", "Client1", "User");
         clientDAO.create(client1);
 
-        Client client2 = Client.of("client2@example.com", "Client2", "User");
+        Client client2 = Client.of("client2mail", "Client2", "User");
         clientDAO.create(client2);
 
         allClients = clientDAO.findAll();

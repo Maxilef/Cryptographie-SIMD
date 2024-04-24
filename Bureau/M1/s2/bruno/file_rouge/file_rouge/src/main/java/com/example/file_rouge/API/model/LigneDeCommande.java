@@ -8,7 +8,7 @@ import java.util.logging.Logger;
 
 @Entity
 @RequiredArgsConstructor(staticName = "of")
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@NoArgsConstructor(access = AccessLevel.PUBLIC)
 @Setter
 @ToString
 @Getter
@@ -22,8 +22,8 @@ public class LigneDeCommande {
     private Integer quantite;
 
     @ManyToOne
-    @JoinColumn(name = "item_id")
-    private Item item;
+    @JoinColumn(name = "produit_id")
+    private Produit produit;
 
     @ManyToOne
     @JoinColumn(name = "commande_id")

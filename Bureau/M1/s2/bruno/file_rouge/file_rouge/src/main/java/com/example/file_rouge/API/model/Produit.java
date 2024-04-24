@@ -9,11 +9,11 @@ import java.util.logging.Logger;
 
 @Entity
 @RequiredArgsConstructor(staticName = "of")
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@NoArgsConstructor(access = AccessLevel.PUBLIC)
 @Setter
 @ToString
 @Getter
-public class Item {
+public class Produit {
 
     @Id
     @GeneratedValue
@@ -32,10 +32,10 @@ public class Item {
     @JoinColumn(name = "commande_id")
     private Commande commande;
 
-    @OneToMany(mappedBy = "item")
+    @OneToMany(mappedBy = "produit")
     private List<LigneDeCommande> lignesDeCommande;
 
-    private static final Logger LOGGER = Logger.getLogger(Item.class.getName());
+    private static final Logger LOGGER = Logger.getLogger(Produit.class.getName());
 
     @Version
     Long version;

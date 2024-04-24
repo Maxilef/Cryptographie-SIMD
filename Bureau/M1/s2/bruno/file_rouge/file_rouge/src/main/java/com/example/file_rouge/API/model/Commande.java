@@ -10,8 +10,7 @@ import java.util.logging.Logger;
 
 @Entity
 @RequiredArgsConstructor(staticName = "of")
-@AllArgsConstructor
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@NoArgsConstructor(access = AccessLevel.PUBLIC)
 @Setter
 @ToString
 @Getter
@@ -38,15 +37,16 @@ public class Commande {
     //Cette annotation indique qu'une commande peut être associée à un seul client, mais qu'un client peut avoir
     // plusieurs commandes. C'est une relation many-to-one, où plusieurs commandes peuvent appartenir à un seul client.
     @ManyToOne
-    @JoinColumn(name = "client_id")
+
     //@JoinColumn(name = "client_id") : Cette annotation spécifie la colonne de la table Commande qui contient la clé
     // étrangère faisant référence à l'identifiant du client dans la table Client. Dans cet exemple, la colonne client_id
     // de la table Commande contiendra les identifiants des clients associés à chaque commande.
+    @JoinColumn(name = "client_id")
     private Client client;
 
 
     @OneToMany(mappedBy = "commande")
-    private List<Item> items;
+    private List<Produit> produits;
 
     @OneToMany(mappedBy = "commande")
     private List<LigneDeCommande> lignesDeCommande;

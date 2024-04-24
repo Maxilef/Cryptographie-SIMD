@@ -16,7 +16,10 @@
             <property name="jakarta.persistence.jdbc.password" value="mypassword" />
 
             <!-- Database creation: none, create, drop-and-create, drop -->
+
+            <!--
             <property name="jakarta.persistence.schema-generation.database.action" value="drop-and-create" />
+            -->
 
             <!-- Sources and order for DB schema generation: script and metadata -->
             <property name="jakarta.persistence.schema-generation.create-source" value="script-then-metadata" />

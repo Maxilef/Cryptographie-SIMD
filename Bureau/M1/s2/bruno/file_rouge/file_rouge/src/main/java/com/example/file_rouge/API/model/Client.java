@@ -19,7 +19,7 @@ import java.net.URI;
 
 @Entity
 @RequiredArgsConstructor(staticName = "of")
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@NoArgsConstructor(access = AccessLevel.PUBLIC)
 @Setter
 @ToString
 @Getter
@@ -43,6 +43,8 @@ public class Client {
 
     private static final Logger LOGGER = Logger.getLogger(Client.class.getName());
 
+
+    //JPA utilise la valeur de la propriété version pour vérifier si une entité a été modifiée par une autre transaction avant de la mettre à jour.
     @Version
     Long version;
 
